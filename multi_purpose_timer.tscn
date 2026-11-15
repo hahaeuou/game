@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cb1wcg67p7u8l"]
+
+[node name="MultiPurposeTimer" type="Timer" unique_id=1532202016]

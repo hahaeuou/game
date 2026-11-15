@@ -1,10 +1,19 @@
 extends RigidBody2D
 
 var force_mult = 30
+var state = REST
+var high_speed_collision: bool
+
+enum {REST, IDLE, HURT, DIZZY, HAPPY}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+
+
+func _process(delta: float) -> void:
+	if state == REST:
+		pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,3 +29,8 @@ func _physics_process(delta: float) -> void:
 	$Camera2D.rot_velocity = angular_velocity
 	$Camera2D.velocity = linear_velocity.length()
 	$Sprite2D.flip_h = max(0, sign(linear_velocity.x))
+
+
+func _on_body_entered(body: Node) -> void:
+		high_speed_collision = true
+		

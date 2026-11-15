@@ -27,3 +27,5 @@ top_level = true
 ignore_rotation = false
 position_smoothing_enabled = true
 script = ExtResource("3_i3pqv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
