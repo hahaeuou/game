@@ -27,6 +27,7 @@ texture = ExtResource("2_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1940580862]
 top_level = true
+offset = Vector2(0, -100)
 ignore_rotation = false
 position_smoothing_enabled = true
 script = ExtResource("3_i3pqv")

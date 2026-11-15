@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://bgksdwv8n8cia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enc2m"]
-size = Vector2(36, 36)
+size = Vector2(62, 62)
 
-[node name="Spike" type="Area2D" unique_id=709336350]
+[node name="Spike" type="Area2D" unique_id=709336350 groups=["spikes"]]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=161262815]
-position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_enc2m")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=585471289]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 color = Color(1, 0, 0, 1)

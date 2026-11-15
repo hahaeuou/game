@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://efxn66qxlog7" path="res://info_displayer.png" id="1_37p78"]
 
+[sub_resource type="SystemFont" id="SystemFont_enc2m"]
+font_names = PackedStringArray("Pusab")
+
 [node name="Control" type="Control" unique_id=1875157836]
 layout_mode = 3
 anchors_preset = 15
@@ -15,3 +18,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_37p78")
+
+[node name="FlowContainer" type="FlowContainer" parent="TextureRect" unique_id=1838744435]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 457.0
+offset_bottom = 121.0
+
+[node name="Label" type="Label" parent="TextureRect/FlowContainer" unique_id=1396214941]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_enc2m")
+theme_override_font_sizes/font_size = 48
+text = "Progress: 0%"

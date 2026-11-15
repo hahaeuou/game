@@ -1,11 +1,12 @@
 extends RigidBody2D
 
-var force_mult = 30
+var force_mult = 9
 var state = REST
 var high_speed_collision = false
 var high_ang_vel = false
 var time_to_idle: float
 var reset_state = false
+var is_on_floor: bool
 
 var checkpoint_pos = Vector2.ZERO
 
@@ -44,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("right arrow"):
 		apply_central_force(Vector2.RIGHT * force_mult)
 	if Input.is_action_just_pressed("up arrow"):
-		pass # should be interaction button, i.e. using jump orbs
+		if is_on_floor:
+			apply_central_impulse(Vector2.UP * force_mult)
 	if Input.is_action_just_pressed("down arrow"):
 		apply_central_impulse(Vector2.DOWN * force_mult)
 	if Input.is_anything_pressed():
@@ -55,10 +57,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	is_on_floor = true
 	if linear_velocity.length() > 2048:
 		high_speed_collision = true
-	await get_tree().create_timer(2.0).timeout
-	high_speed_collision = false
+		await get_tree().create_timer(2.0).timeout
+		high_speed_collision = false
+	await get_tree().create_timer(0.2).timeout
+	is_on_floor = false
 
 
 func _on_timer_timeout() -> void:
