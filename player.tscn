@@ -7,6 +7,7 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="RigidBody2D" unique_id=1254977242]
+mass = 0.01
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87988225]

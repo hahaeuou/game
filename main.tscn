@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="2_0xm2m"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onrkg"]
+bounce = 0.6
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_enc2m"]
+
 [node name="Node2D" type="Node2D" unique_id=549614031]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=262473113]
@@ -16,5 +21,16 @@ modulate = Color(1, 1, 1, 0.49803922)
 texture = ExtResource("2_0xm2m")
 
 [node name="Player" parent="." unique_id=1254977242 instance=ExtResource("1_ig7tw")]
+physics_material_override = SubResource("PhysicsMaterial_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1169969025]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=184738408]
+position = Vector2(0, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=371185486]
+shape = SubResource("WorldBoundaryShape2D_enc2m")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1712378337]
+offset_right = 999.0
+offset_bottom = 40.0
