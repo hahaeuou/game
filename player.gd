@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left arrow"):
 		apply_central_force(Vector2.LEFT * force_mult)
 	if Input.is_action_pressed("right arrow"):
@@ -19,3 +19,4 @@ func _process(delta: float) -> void:
 		apply_central_impulse(Vector2.DOWN * force_mult)
 	$Camera2D.rot_velocity = angular_velocity
 	$Camera2D.velocity = linear_velocity.length()
+	$Sprite2D.flip_h = max(0, sign(linear_velocity.x))

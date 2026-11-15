@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5sgy0k2htp7b"]
 
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b13na3ivdk4pp" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://cbs1qwb0rvlr2" path="res://player_rest.png" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://cqstje5q41q86" path="res://camera_2d.gd" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enc2m"]
@@ -20,7 +20,7 @@ update_scale = false
 shape = SubResource("RectangleShape2D_enc2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=96092853]
-texture = ExtResource("1_4flbx")
+texture = ExtResource("2_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1940580862]
 top_level = true
