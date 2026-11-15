@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://cqstje5q41q86" path="res://camera_2d.gd" id="3_h2yge"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onrkg"]
 bounce = 0.6
@@ -12,20 +11,19 @@ bounce = 0.6
 [node name="Node2D" type="Node2D" unique_id=549614031]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=262473113]
+visible = false
 scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(1215, 0)
 repeat_size = Vector2(256, 256)
 repeat_times = 12
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=666559568]
+visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 texture = ExtResource("2_0xm2m")
 
 [node name="Player" parent="." unique_id=1254977242 instance=ExtResource("1_ig7tw")]
 physics_material_override = SubResource("PhysicsMaterial_onrkg")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1169969025]
-script = ExtResource("3_h2yge")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=184738408]
 position = Vector2(0, 192)

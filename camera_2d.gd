@@ -1,7 +1,10 @@
 extends Camera2D
 
 var rot_velocity: float
-const CAMERA_ROT_MULT = 1
+const CAMERA_ROT_MULT = 0.2
+
+func rot_vel_to_camera_rot(rot_vel: float) -> float:
+	return (2 / (1 + exp(-rot_vel))) - 1 # transformed logistic function
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,5 +13,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	rotation = rot_velocity * CAMERA_ROT_MULT
-	print(rotation)
+	var before_lerp = rot_vel_to_camera_rot(rot_velocity) * CAMERA_ROT_MULT
+	set_deferred("rotation", lerp(rotation, before_lerp, 0.3))
