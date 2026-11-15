@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://ryxy41vyx2e0"]
 
 [ext_resource type="Texture2D" uid="uid://efxn66qxlog7" path="res://info_displayer.png" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://b62dxn4w6nfkq" path="res://close.png" id="2_64ctp"]
+[ext_resource type="Script" uid="uid://dyn02kq6y85i2" path="res://texture_button.gd" id="3_8sq4i"]
 
 [sub_resource type="SystemFont" id="SystemFont_enc2m"]
 font_names = PackedStringArray("Pusab")
+subpixel_positioning = 0
 
 [node name="Control" type="Control" unique_id=1875157836]
 layout_mode = 3
@@ -19,14 +22,22 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_37p78")
 
-[node name="FlowContainer" type="FlowContainer" parent="TextureRect" unique_id=1838744435]
+[node name="Label" type="Label" parent="TextureRect" unique_id=1396214941]
 layout_mode = 0
 offset_top = 80.0
-offset_right = 457.0
-offset_bottom = 121.0
-
-[node name="Label" type="Label" parent="TextureRect/FlowContainer" unique_id=1396214941]
-layout_mode = 2
+offset_right = 270.0
+offset_bottom = 111.0
 theme_override_fonts/font = SubResource("SystemFont_enc2m")
 theme_override_font_sizes/font_size = 48
-text = "Progress: 0%"
+text = "Game Name"
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect" unique_id=1416583044]
+layout_mode = 0
+offset_left = 1081.0
+offset_top = 80.0
+offset_right = 1145.0
+offset_bottom = 144.0
+texture_normal = ExtResource("2_64ctp")
+script = ExtResource("3_8sq4i")
+
+[connection signal="pressed" from="TextureRect/TextureButton" to="TextureRect/TextureButton" method="_on_pressed"]

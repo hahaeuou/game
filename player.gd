@@ -46,9 +46,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("right arrow"):
 		apply_central_force(Vector2.RIGHT * force_mult / (0.0001 * abs(linear_velocity.x) + 1))
 	if Input.is_action_just_pressed("up arrow") and is_in_orb:
-		apply_central_impulse(Vector2.UP * force_mult)
+		apply_central_impulse(Vector2.UP * force_mult * gravity_scale)
 	if Input.is_action_just_pressed("down arrow"):
-		apply_central_impulse(Vector2.DOWN * force_mult)
+		apply_central_impulse(Vector2.DOWN * force_mult * gravity_scale / (0.0001 * abs(linear_velocity.y) + 1))
 	if Input.is_anything_pressed():
 		$Timer.start()
 	$Camera2D.rot_velocity = angular_velocity
@@ -102,4 +102,4 @@ func _on_orb_detector_area_exited(area: Area2D) -> void:
 
 
 func _on_grav_swt_detector_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	gravity_scale = 1.0 if area.rotation == 0.0 else -1.0
