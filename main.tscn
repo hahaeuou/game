@@ -5,10 +5,16 @@
 
 [node name="Node2D" type="Node2D" unique_id=549614031]
 
-[node name="Player" parent="." unique_id=1254977242 instance=ExtResource("1_ig7tw")]
-
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=262473113]
-scroll_scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(1215, 0)
+repeat_size = Vector2(256, 256)
+repeat_times = 12
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=666559568]
+modulate = Color(1, 1, 1, 0.49803922)
 texture = ExtResource("2_0xm2m")
+
+[node name="Player" parent="." unique_id=1254977242 instance=ExtResource("1_ig7tw")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1169969025]

@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+var force_mult = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +10,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("left arrow"):
-		apply_central_force(Vector2.LEFT)
+		apply_central_force(Vector2.LEFT * force_mult)
 	if Input.is_action_pressed("right arrow"):
-		apply_central_force(Vector2.RIGHT)
+		apply_central_force(Vector2.RIGHT * force_mult)
