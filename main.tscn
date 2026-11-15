@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://c4ucoa3dvldq4" path="res://ground.png" id="3_h2yge"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onrkg"]
 bounce = 0.6
@@ -31,6 +32,12 @@ position = Vector2(0, 192)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=371185486]
 shape = SubResource("WorldBoundaryShape2D_enc2m")
 
-[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1712378337]
-offset_right = 999.0
-offset_bottom = 40.0
+[node name="Parallax2D" type="Parallax2D" parent="Ground" unique_id=1815181932]
+scroll_offset = Vector2(0, -64)
+repeat_size = Vector2(2400, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Parallax2D" unique_id=574212158]
+position = Vector2(-1200, 0)
+texture = ExtResource("3_h2yge")
+centered = false
