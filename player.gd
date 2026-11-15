@@ -103,3 +103,7 @@ func _on_orb_detector_area_exited(area: Area2D) -> void:
 
 func _on_grav_swt_detector_area_entered(area: Area2D) -> void:
 	gravity_scale = 1.0 if area.rotation == 0.0 else -1.0
+
+
+func _on_win_detector_area_entered(area: Area2D) -> void:
+	state = HAPPY

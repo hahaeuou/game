@@ -60,6 +60,7 @@ checkpoints=""
 2d_physics/layer_4="checkpoints"
 2d_physics/layer_5="orbs"
 2d_physics/layer_6="gravity_switch"
+2d_physics/layer_7="win"
 
 [physics]
 
