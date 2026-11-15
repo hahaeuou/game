@@ -18,3 +18,4 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("down arrow"):
 		apply_central_impulse(Vector2.DOWN * force_mult)
 	$Camera2D.rot_velocity = angular_velocity
+	$Camera2D.velocity = linear_velocity.length()
