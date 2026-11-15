@@ -10,7 +10,7 @@ func rot_vel_to_camera_rot(rot_vel: float) -> float:
 
 
 func vel_to_camera_scale(vel: float) -> float:
-	return 1 / (CAMERA_SCALE_MULT * vel + 1)
+	return max(0.6, 1 / (CAMERA_SCALE_MULT * vel + 1))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
