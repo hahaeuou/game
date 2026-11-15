@@ -23,4 +23,3 @@ func _process(delta: float) -> void:
 	var before_lerp_scale = vel_to_camera_scale(velocity)
 	set_deferred("rotation", lerp(rotation, before_lerp_rot, 0.3))
 	set_deferred("zoom", lerp(zoom, Vector2.ONE * before_lerp_scale, 0.3))
-	print(zoom)

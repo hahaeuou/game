@@ -14,14 +14,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	time_to_idle = $Timer.time_left
 	high_ang_vel = abs(angular_velocity) > 12
 	if high_speed_collision:
 		state = HURT
 	elif high_ang_vel:
 		state = DIZZY
-	elif time_to_idle < 5.0:
+	elif time_to_idle > 0:
 		state = REST
-	
+	print(time_to_idle)
 	if state == REST:
 		$Sprite2D.texture = preload("res://player_rest.png")
 	if state == IDLE:
@@ -32,7 +33,8 @@ func _process(delta: float) -> void:
 		$Sprite2D.texture = preload("res://player_dizzy.png")
 	if state == HAPPY:
 		$Sprite2D.texture = preload("res://player_happy.png")
-
+	print(state)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -48,13 +50,15 @@ func _physics_process(delta: float) -> void:
 		$Timer.start()
 	$Camera2D.rot_velocity = angular_velocity
 	$Camera2D.velocity = linear_velocity.length()
-	$Sprite2D.flip_h = max(0, sign(linear_velocity.x))
+	$Sprite2D.flip_h = max(0, sign(linear_velocity.x)) if abs(linear_velocity.x) > 64 else $Sprite2D.flip_h
 
 
 func _on_body_entered(body: Node) -> void:
+	print("entered")
+	if linear_velocity.length() > 2048:
 		high_speed_collision = true
-		await get_tree().create_timer(2.0).timeout
-		high_speed_collision = false
+	await get_tree().create_timer(2.0).timeout
+	high_speed_collision = false
 
 
 func _on_timer_timeout() -> void:

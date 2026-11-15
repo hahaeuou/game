@@ -9,6 +9,8 @@ size = Vector2(128, 128)
 
 [node name="Player" type="RigidBody2D" unique_id=1254977242]
 mass = 0.01
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_onrkg")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1196201664]
@@ -30,6 +32,7 @@ script = ExtResource("3_i3pqv")
 
 [node name="Timer" type="Timer" parent="." unique_id=1499518580]
 wait_time = 5.0
+one_shot = true
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
