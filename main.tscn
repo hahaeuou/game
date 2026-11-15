@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgksdwv8n8cia" path="res://spike.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dks4kuxtoo33y" path="res://tileset.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ryxy41vyx2e0" path="res://hud.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cycu0wxd3c48y" path="res://checkpoint.tscn" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://denyreem6qlwv" path="res://decoration.png" id="8_5vw27"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onrkg"]
 bounce = 0.6
@@ -49,6 +51,12 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7mycd"]
 resource_name = "spike.tscn"
 scenes/1/scene = ExtResource("4_1bvp3")
+scenes/2/scene = ExtResource("7_272bh")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kek77"]
+texture = ExtResource("8_5vw27")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_enc2m"]
 tile_size = Vector2i(64, 64)
@@ -56,6 +64,7 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_7mycd")
 sources/2 = SubResource("TileSetScenesCollectionSource_7mycd")
+sources/3 = SubResource("TileSetAtlasSource_kek77")
 
 [node name="Main" type="Node" unique_id=256724578]
 
@@ -106,5 +115,5 @@ centered = false
 [node name="Statics" type="Node" parent="." unique_id=2078435566]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Statics" unique_id=1379158441]
-tile_map_data = PackedByteArray("AAAJAAAAAQABAAAAAAAKAAAAAQACAAAAAAALAAAAAQADAAAAAAAMAAAAAQAEAAAAAAAJAAEAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAEAAQAAAAEAAAALAAEAAQAAAAEAAAAMAAEAAQAAAAEAAAAKAAIAAQAAAAIAAAAMAAIAAQAAAAIAAAALAAIAAQAAAAEAAAAPAP//AQADAAEAAAAQAP//AQACAAAAAAARAP//AQACAAAAAAASAP//AQAEAAEAAAA=")
+tile_map_data = PackedByteArray("AAAJAAAAAQABAAAAAAAKAAAAAQACAAAAAAALAAAAAQADAAAAAAAMAAAAAQAEAAAAAAAJAAEAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAEAAQAAAAEAAAALAAEAAQAAAAEAAAAMAAEAAQAAAAEAAAAKAAIAAQAAAAIAAAAMAAIAAQAAAAIAAAALAAIAAQAAAAEAAAAPAP//AQADAAEAAAAQAP//AQACAAAAAAARAP//AQACAAAAAAASAP//AQAEAAEAAAANAAIAAgAAAAAAAQAOAAIAAgAAAAAAAQAPAAIAAgAAAAAAAQAQAAIAAgAAAAAAAQARAAIAAgAAAAAAAQASAAIAAgAAAAAAAQATAAIAAgAAAAAAAQAUAAIAAgAAAAAAAQAVAAIAAgAAAAAAAQAWAAIAAgAAAAAAAQAXAAIAAgAAAAAAAQAYAAIAAgAAAAAAAQAZAAIAAgAAAAAAAQAaAAIAAgAAAAAAAQAMAP//AgAAAAAAAgAUAP//AwAAAAAAADAMAP3/AwAAAAAAAAAMAPz/AwAAAAAAAAAMAPv/AwAAAAAAAAARAP7/AwAAAAAAAFA=")
 tile_set = SubResource("TileSet_enc2m")
