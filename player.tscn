@@ -8,6 +8,7 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="RigidBody2D" unique_id=1254977242]
+collision_mask = 14
 mass = 0.01
 contact_monitor = true
 max_contacts_reported = 1
