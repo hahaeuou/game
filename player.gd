@@ -1,12 +1,13 @@
 extends RigidBody2D
 
-var force_mult = 9
+const force_mult = 9
 var state = REST
 var high_speed_collision = false
 var high_ang_vel = false
 var time_to_idle: float
 var reset_state = false
 var is_on_floor: bool
+var is_in_orb = false
 
 var checkpoint_pos = Vector2.ZERO
 
@@ -41,12 +42,11 @@ func _process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left arrow"):
-		apply_central_force(Vector2.LEFT * force_mult)
+		apply_central_force(Vector2.LEFT * force_mult / (0.0001 * abs(linear_velocity.x) + 1))
 	if Input.is_action_pressed("right arrow"):
-		apply_central_force(Vector2.RIGHT * force_mult)
-	if Input.is_action_just_pressed("up arrow"):
-		if is_on_floor:
-			apply_central_impulse(Vector2.UP * force_mult)
+		apply_central_force(Vector2.RIGHT * force_mult / (0.0001 * abs(linear_velocity.x) + 1))
+	if Input.is_action_just_pressed("up arrow") and is_in_orb:
+		apply_central_impulse(Vector2.UP * force_mult)
 	if Input.is_action_just_pressed("down arrow"):
 		apply_central_impulse(Vector2.DOWN * force_mult)
 	if Input.is_anything_pressed():
@@ -91,3 +91,15 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		t.origin.x = checkpoint_pos.x
 		t.origin.y = checkpoint_pos.y
 		state.set_transform(t)
+
+
+func _on_orb_detector_area_entered(area: Area2D) -> void:
+	is_in_orb = true
+
+
+func _on_orb_detector_area_exited(area: Area2D) -> void:
+	is_in_orb = false
+
+
+func _on_grav_swt_detector_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

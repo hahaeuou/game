@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dkldb28hh4bob"]
+
+[ext_resource type="Script" uid="uid://ckiy6bd3yf2tl" path="res://gravity_switch.gd" id="1_aae3q"]
+[ext_resource type="Texture2D" uid="uid://eri1vq4ga7dc" path="res://gravity_switch.png" id="2_ri4co"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enc2m"]
+size = Vector2(48, 48)
+
+[node name="Area2D" type="Area2D" unique_id=1571043906]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_aae3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1956433029]
+shape = SubResource("RectangleShape2D_enc2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=917004469]
+texture = ExtResource("2_ri4co")

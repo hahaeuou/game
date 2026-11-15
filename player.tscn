@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://5sgy0k2htp7b"]
 
 [ext_resource type="Script" uid="uid://b13na3ivdk4pp" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://qac551unfkm1" path="res://player_bg.png" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://cbs1qwb0rvlr2" path="res://player_rest.png" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://cqstje5q41q86" path="res://camera_2d.gd" id="3_i3pqv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_enc2m"]
-size = Vector2(128, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+radius = 36.05551
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enc2m"]
+radius = 36.0
 
 [node name="Player" type="RigidBody2D" unique_id=1254977242]
 collision_mask = 2
@@ -14,15 +18,20 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_onrkg")
 
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=89321945]
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("2_hqtel")
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1196201664]
 remote_path = NodePath("../Camera2D")
 update_rotation = false
 update_scale = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87988225]
-shape = SubResource("RectangleShape2D_enc2m")
+shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=96092853]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1940580862]
@@ -30,6 +39,7 @@ top_level = true
 offset = Vector2(0, -100)
 ignore_rotation = false
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 script = ExtResource("3_i3pqv")
 
 [node name="Timer" type="Timer" parent="." unique_id=1499518580]
@@ -41,17 +51,34 @@ autostart = true
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointDetector" unique_id=534471794]
-shape = SubResource("RectangleShape2D_enc2m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointDetector" unique_id=1213522597]
+shape = SubResource("CircleShape2D_enc2m")
 
 [node name="SpikeDetector" type="Area2D" parent="." unique_id=1200001299]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetector" unique_id=565749900]
-shape = SubResource("RectangleShape2D_enc2m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetector" unique_id=258765267]
+shape = SubResource("CircleShape2D_enc2m")
+
+[node name="OrbDetector" type="Area2D" parent="." unique_id=244940757]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbDetector" unique_id=1625315508]
+shape = SubResource("CircleShape2D_enc2m")
+
+[node name="GravSwtDetector" type="Area2D" parent="." unique_id=372914812]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravSwtDetector" unique_id=569959083]
+shape = SubResource("CircleShape2D_enc2m")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="CheckpointDetector" to="." method="_on_checkpoint_detector_area_entered"]
 [connection signal="area_entered" from="SpikeDetector" to="." method="_on_spike_detector_area_entered"]
+[connection signal="area_entered" from="OrbDetector" to="." method="_on_orb_detector_area_entered"]
+[connection signal="area_exited" from="OrbDetector" to="." method="_on_orb_detector_area_exited"]
+[connection signal="area_entered" from="GravSwtDetector" to="." method="_on_grav_swt_detector_area_entered"]
