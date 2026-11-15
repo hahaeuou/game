@@ -3,13 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4ucoa3dvldq4" path="res://ground.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bgksdwv8n8cia" path="res://spike.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cycu0wxd3c48y" path="res://checkpoint.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ryxy41vyx2e0" path="res://hud.tscn" id="6_7mycd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onrkg"]
 bounce = 0.6
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_enc2m"]
 
-[node name="Node2D" type="Node2D" unique_id=549614031]
+[node name="Main" type="Node" unique_id=256724578]
+
+[node name="ControlNodes" type="CanvasLayer" parent="." unique_id=1192840576]
+
+[node name="Control" parent="ControlNodes" unique_id=1875157836 instance=ExtResource("6_7mycd")]
+offset_top = -75.0
+offset_bottom = -75.0
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=262473113]
 visible = false
@@ -43,3 +52,13 @@ repeat_times = 3
 position = Vector2(-1200, 0)
 texture = ExtResource("3_h2yge")
 centered = false
+
+[node name="Spikes" type="Node" parent="." unique_id=517230461]
+
+[node name="Spike" parent="Spikes" unique_id=709336350 instance=ExtResource("4_1bvp3")]
+position = Vector2(627, -122)
+
+[node name="Checkpoints" type="Node" parent="." unique_id=1652417324]
+
+[node name="Checkpoint" parent="Checkpoints" unique_id=2145191709 instance=ExtResource("5_lquwl")]
+position = Vector2(205, -253)

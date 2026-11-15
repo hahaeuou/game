@@ -5,6 +5,9 @@ var state = REST
 var high_speed_collision = false
 var high_ang_vel = false
 var time_to_idle: float
+var reset_state = false
+
+var checkpoint_pos = Vector2.ZERO
 
 enum {REST, IDLE, HURT, DIZZY, HAPPY}
 
@@ -22,7 +25,6 @@ func _process(delta: float) -> void:
 		state = DIZZY
 	elif time_to_idle > 0:
 		state = REST
-	print(time_to_idle)
 	if state == REST:
 		$Sprite2D.texture = preload("res://player_rest.png")
 	if state == IDLE:
@@ -33,7 +35,6 @@ func _process(delta: float) -> void:
 		$Sprite2D.texture = preload("res://player_dizzy.png")
 	if state == HAPPY:
 		$Sprite2D.texture = preload("res://player_happy.png")
-	print(state)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("right arrow"):
 		apply_central_force(Vector2.RIGHT * force_mult)
 	if Input.is_action_just_pressed("up arrow"):
-		pass
+		pass # should be interaction button, i.e. using jump orbs
 	if Input.is_action_just_pressed("down arrow"):
 		apply_central_impulse(Vector2.DOWN * force_mult)
 	if Input.is_anything_pressed():
@@ -54,7 +55,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("entered")
 	if linear_velocity.length() > 2048:
 		high_speed_collision = true
 	await get_tree().create_timer(2.0).timeout
@@ -63,3 +63,26 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_timer_timeout() -> void:
 	state = IDLE
+
+
+func _on_checkpoint_detector_area_entered(area: Area2D) -> void:
+	checkpoint_pos = position
+	area.new_checkpoint_active()
+
+
+func _on_spike_detector_area_entered(area: Area2D) -> void:
+	die()
+
+
+func die():
+	reset_state = true
+	await get_tree().create_timer(0.1).timeout
+	reset_state = false
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if reset_state:
+		var t = state.get_transform()
+		t.origin.x = checkpoint_pos.x
+		t.origin.y = checkpoint_pos.y
+		state.set_transform(t)

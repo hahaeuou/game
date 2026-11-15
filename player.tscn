@@ -8,7 +8,7 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="RigidBody2D" unique_id=1254977242]
-collision_mask = 14
+collision_mask = 2
 mass = 0.01
 contact_monitor = true
 max_contacts_reported = 1
@@ -36,5 +36,21 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
+[node name="CheckpointDetector" type="Area2D" parent="." unique_id=1571636582]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointDetector" unique_id=534471794]
+shape = SubResource("RectangleShape2D_enc2m")
+
+[node name="SpikeDetector" type="Area2D" parent="." unique_id=1200001299]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetector" unique_id=565749900]
+shape = SubResource("RectangleShape2D_enc2m")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="CheckpointDetector" to="." method="_on_checkpoint_detector_area_entered"]
+[connection signal="area_entered" from="SpikeDetector" to="." method="_on_spike_detector_area_entered"]

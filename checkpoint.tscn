@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://cycu0wxd3c48y"]
 
 [ext_resource type="Texture2D" uid="uid://bmn81hm2alrrm" path="res://checkpoint_new.png" id="1_luqgl"]
+[ext_resource type="Script" uid="uid://bjswyn0ae1rng" path="res://checkpoint.gd" id="1_r6hke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enc2m"]
 size = Vector2(50, 50)
 
-[node name="Checkpoint" type="Area2D" unique_id=2145191709]
+[node name="Checkpoint" type="Area2D" unique_id=2145191709 groups=["checkpoints"]]
 collision_layer = 8
+script = ExtResource("1_r6hke")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=484627215]
 shape = SubResource("RectangleShape2D_enc2m")
