@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://buaq673iyr04d"]
 
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=549614031]
 
 [node name="Player" parent="." unique_id=1254977242 instance=ExtResource("1_ig7tw")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=262473113]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=666559568]
+texture = ExtResource("2_0xm2m")
